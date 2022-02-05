@@ -1,0 +1,33 @@
+{
+  "name": "2048-cmd-game",
+  "version": "1.0.0",
+  "description": "Node based CMD 2048 Game.",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "npm test",
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sachinsom93/2048-CMD-Game.git"
+  },
+  "keywords": [
+    "Node",
+    "CMD",
+    "2048",
+    "Game"
+  ],
+  "author": "sachinsom507@gmail.com",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/sachinsom93/2048-CMD-Game/issues"
+  },
+  "homepage": "https://github.com/sachinsom93/2048-CMD-Game#readme",
+  "dependencies": {
+    "keypress": "^0.2.1"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.15"
+  }
+}
