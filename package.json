@@ -25,6 +25,7 @@
   },
   "homepage": "https://github.com/sachinsom93/2048-CMD-Game#readme",
   "dependencies": {
+    "chalk": "^2.4.1",
     "keypress": "^0.2.1"
   },
   "devDependencies": {
