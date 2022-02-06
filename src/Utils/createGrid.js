@@ -2,10 +2,8 @@
  * Module for initializing Game 2048 Grid.
 */
 
-const { displayGrid }= require('./displayGrid');
-
 module.exports = {
-    initiateGrid: function(gridSize) {
+    createGrid: function(gridSize) {
         const grid = [];
 
         // Create Array in each row
@@ -19,9 +17,6 @@ module.exports = {
                 grid[row][col] = 'x';
             }
         }
-
-        // Display Grid
-        displayGrid(grid)
-
+        return grid;
     }
 }
