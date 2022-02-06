@@ -14,7 +14,7 @@ module.exports = {
         // Initiate Grid
         for(let row = 0; row < gridSize; row++) {
             for(let col = 0; col < gridSize; col++) {
-                grid[row][col] = 'x';
+                grid[row][col] = 0;
             }
         }
         return grid;
