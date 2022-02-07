@@ -4,7 +4,7 @@ const { shiftCells } = require('../Utils/shiftCells');
 const config = require('../../config.json');
 
 module.exports = {
-    moveGridToLeft: function (matrix, gridSize) {
+    moveGridToLeft: function (matrix, gridSize, score) {
         var endpoint;
         var moved = false;
         for (var length = 0; length < gridSize; length++) {
@@ -31,7 +31,7 @@ module.exports = {
 
                 if (isEndPointFull && isMergeValFull) {
                     if (endpointVal == toMergeVal) {
-                        mergeCells(endpoint, toMergePos, matrix);
+                        mergeCells(endpoint, toMergePos, matrix, score);
                         moved = true;
                     } else {
                         matrix[endpoint.l][endpoint.b + 1] = toMergeVal;

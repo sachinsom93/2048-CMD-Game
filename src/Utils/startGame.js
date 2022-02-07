@@ -3,7 +3,6 @@
 */
 
 const { createGrid } = require('./createGrid');
-const { displayGrid } = require('./displayGrid');
 const { fillRandomCell } = require('./fillRandomCell');
 
 module.exports = {
@@ -14,9 +13,6 @@ module.exports = {
 
         // Fill Position with Random Num
         let haveEmptyCells = fillRandomCell(grid, gridSize);
-
-        // Display
-        displayGrid(grid);
 
         return grid;
     }

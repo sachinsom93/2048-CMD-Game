@@ -6,7 +6,7 @@ const config = require('../../config.json');
 
 
 module.exports = {
-    moveToRight : function (matrix, gridSize) {
+    moveToRight : function (matrix, gridSize, score) {
         var endpoint;
         var moved = false;
         for (var length = 0; length < gridSize; length++) {
@@ -33,7 +33,7 @@ module.exports = {
 
                 if (isEndPointFull && isMergeValFull) {
                     if (endpointVal == toMergeVal) {
-                        mergeCells(endpoint, toMergePos, matrix);
+                        mergeCells(endpoint, toMergePos, matrix, score);
                         endpoint = {
                             l: length,
                             b: endpoint.b - 1
