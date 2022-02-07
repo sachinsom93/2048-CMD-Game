@@ -1,4 +1,5 @@
 {
-    "gridSize": 8,
-    "winningScore": 2048
+    "gridSize": 4,
+    "winningScore": 2048,
+    "emptySymbol": 0
 }
