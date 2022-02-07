@@ -4,7 +4,7 @@
 
 const { createGrid } = require('./createGrid');
 const { displayGrid } = require('./displayGrid');
-const { fillRandomNum } = require('./filRandomNum');
+const { fillRandomCell } = require('./fillRandomCell');
 
 module.exports = {
     startGame: function(gridSize) {
@@ -13,12 +13,9 @@ module.exports = {
         grid = createGrid(gridSize);
 
         // Fill Position with Random Num
-        grid = fillRandomNum(grid);
+        let haveEmptyCells = fillRandomCell(grid, gridSize);
 
-        // Again, Fill with Random Num
-        grid = fillRandomNum(grid);
-
-        // Display Grid
+        // Display
         displayGrid(grid);
 
         return grid;
