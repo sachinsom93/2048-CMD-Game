@@ -25,6 +25,7 @@ const GRIDSIZE = gridSize;
 const WELCOME_MSG = 'Welcome to 2048 CMD Game!';
 
 
+
 /**
  * States of the game.
 */
@@ -33,15 +34,23 @@ var score = [0];
 console.log(WELCOME_MSG);
 displayGrid(grid, score);
 
+
+
 /**
  * Listent for Keypress Event.
 */
 process.stdin.on("keypress", function (ch, key) {
+
+  // Check for key or number chars existance
   if(!key && !ch) {
     console.log('Please Use the Arrow Keys.')
     return;
   }
+
+  // Extract Key name
   let keyName = key ? key.name : ch;
+
+  // Functions for each directions
   switch (keyName) {
     case "up":
     case "3":

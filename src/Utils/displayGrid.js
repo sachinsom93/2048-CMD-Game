@@ -30,9 +30,10 @@ module.exports = {
         process.stdout.write('Target Score: ' + config.winningScore + '\n\n');
 
         // Key Instructions
-        process.stdout.write('Press 1 or left arrow key for ' + chalk.bold('left') + ' movement.\n')
-        process.stdout.write('Press 2 or right arrow key for ' + chalk.bold('right') + ' movement.\n')
-        process.stdout.write('Press 3 or up arrow key for ' + chalk.bold('up') + ' movement.\n')
-        process.stdout.write('Press 4 or up down key for ' + chalk.bold('down') +  ' movement.\n')
+        process.stdout.write('Press 1 or left arrow key for ' + chalk.bold('left') + ' movement.\n');
+        process.stdout.write('Press 2 or right arrow key for ' + chalk.bold('right') + ' movement.\n');
+        process.stdout.write('Press 3 or up arrow key for ' + chalk.bold('up') + ' movement.\n');
+        process.stdout.write('Press 4 or up down key for ' + chalk.bold('down') +  ' movement.\n\n');
+        process.stdout.write('Press q for quiting from the game.\n')
     }
 }
