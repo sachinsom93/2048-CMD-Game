@@ -2,37 +2,88 @@
  * Project Dependencies
  */
 const { keypress } = require("./Dependencies/keypress");
-const { initiateGrid } = require("./Utils/gridInit");
+
+
+/**
+ * Project Utilities Function.
+*/
 const { gridSize } = require("../config.json");
+const { slide }= require('./Utils/slide');
+const { createGrid } = require('./Utils/createGrid');
+const { displayGrid } = require('./Utils/displayGrid');
+const { fillRandomCell } = require('./Utils/fillRandomCell');
+const { startGame } = require('./Utils/startGame');
+const { moveGridToLeft } = require('./Movement/moveToLeft');
+const { moveToRight }= require('./Movement/moveToRight');
+const { moveToDown } = require('./Movement/moveToDown');
+const { moveToUp } = require('./Movement/moveToUp');
 
 
 /**
  * Global Vars
 */
+const GRIDSIZE = gridSize;
 const WELCOME_MSG = 'Welcome to 2048 CMD Game!';
 const GAMEOVER_MSG = 'Game Over!';
 const WINNING_MSG = 'You Won! Continue to reach higher level';
 
 
 /**
- * Listent for Keypress Event
+ * States of the game.
+*/
+var grid = startGame(GRIDSIZE);
+
+/**
+ * Listent for Keypress Event.
 */
 process.stdin.on("keypress", function (ch, key) {
   switch (key.name) {
     case "up":
-      console.log("Up key");
+      let movedUp = moveToUp(grid, GRIDSIZE);
+      if(movedUp) {
+        var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
+        if(!haveEmptyCells) {
+          console.log(GAMEOVER_MSG);
+          process.exit();
+        }
+      }
+      displayGrid(grid);
       break;
 
     case "down":
-      console.log("Down key");
+      let movedDown = moveToDown(grid, GRIDSIZE);
+      if(movedDown) {
+        var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
+        if(!haveEmptyCells) {
+          console.log(GAMEOVER_MSG);
+          process.exit();
+        }
+      }
+      displayGrid(grid);
       break;
 
     case "right":
-      console.log("Right key");
+      let movedRight = moveToRight(grid, GRIDSIZE);
+      if(movedRight) {
+        var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
+        if(!haveEmptyCells) {
+          console.log(GAMEOVER_MSG);
+          process.exit();
+        }
+      }
+      displayGrid(grid);
       break;
 
     case "left":
-      console.log("Left key");
+      let movedLeft = moveGridToLeft(grid, GRIDSIZE);
+      if(movedLeft) {
+        var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
+        if(!haveEmptyCells) {
+          console.log(GAMEOVER_MSG);
+          process.exit();
+        }
+      }
+      displayGrid(grid);
       break;
 
     default:
@@ -46,23 +97,3 @@ process.stdin.on("keypress", function (ch, key) {
     process.exit();
   }
 });
-
-
-/**
- * Welcome Message
-*/
-console.log(WELCOME_MSG);
-console.log();
-
-
-/**
- * Initiate grid
-*/
-initiateGrid(gridSize);
-
-
-/**
- * Game Result.
-*/
-console.log()
-console.log(WINNING_MSG)
