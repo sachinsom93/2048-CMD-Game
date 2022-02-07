@@ -1,18 +1,34 @@
+/**
+ * Module for shifting currCell to nextCell.
+*/
+
+// Module Dependencies
 const config = require('../../config.json');
 const { isValueNonEmpty } = require('../Utils/isValueNonEmpty');
 
+
 module.exports = {
-    shiftCells : function(endpoint, toMergePos, grid) {
+    shiftCells : function(currCell, nextCell, grid) {
+
+        // Curr and next cell value
         var moved = false;
-        var endpointVal = grid[endpoint.l][endpoint.b];
-        var toMergeVal = grid[toMergePos.l][toMergePos.b];
+        var currCell = grid[currCell.row][currCell.col];
+        var nextCellVal = grid[nextCell.row][nextCell.col];
 
-        var isEndPointEmpty = !isValueNonEmpty(endpointVal);
-        var isMergeValFull = isValueNonEmpty(toMergeVal);
+        // Check if Curr Cell is Empty and Next is full
+        var isCurrCellEmpty = !isValueNonEmpty(currCell);
+        var isNextCellFull = isValueNonEmpty(nextCellVal);
 
-        if (isEndPointEmpty && isMergeValFull) {
-            grid[toMergePos.l][toMergePos.b] = config.emptySymbol;
-            grid[endpoint.l][endpoint.b] = toMergeVal;
+        // Update Cells if Curr is empty and next is full
+        if (isCurrCellEmpty && isNextCellFull) {
+
+            // Update Next Cell
+            grid[nextCell.row][nextCell.col] = config.emptySymbol;
+
+            // Update Curr Cell
+            grid[currCell.row][currCell.col] = nextCellVal;
+
+            // Change Moved status
             moved = true;
         }
         return moved;

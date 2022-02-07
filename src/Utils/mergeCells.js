@@ -1,15 +1,15 @@
 const config = require('../../config.json');
 
 module.exports = {
-    mergeCells: function (endpoint, toMergePos, grid, score) {
-        var endpointVal = grid[endpoint.l][endpoint.b];
-        var toMergeVal = grid[toMergePos.l][toMergePos.b];
-        score[0] += Number(endpointVal) + Number(toMergeVal);
-        grid[endpoint.l][endpoint.b] = endpointVal + toMergeVal;
+    mergeCells: function (currCell, nextCell, grid, score) {
+        var currCellVal = grid[currCell.row][currCell.col];
+        var nextCellVal = grid[nextCell.row][nextCell.col];
+        score[0] += Number(currCellVal) + Number(nextCellVal);
+        grid[currCell.row][currCell.col] = currCellVal + nextCellVal;
         if (score[0] >= config.winningScore) {
             console.log(config.winMsg);
             process.exit();
         }
-        grid[toMergePos.l][toMergePos.b] = config.emptySymbol;
+        grid[nextCell.row][nextCell.col] = config.emptySymbol;
     }
 }

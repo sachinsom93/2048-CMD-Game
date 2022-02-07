@@ -1,63 +1,78 @@
+/**
+ * This module moves every cell to it's right
+ * and, merge in case of eqaul cells and shifts.
+*/
+
+
+// Module Dependencies
 const { isValueNonEmpty } = require('../Utils/isValueNonEmpty');
 const { mergeCells } = require('../Utils/mergeCells');
 const { shiftCells } = require('../Utils/shiftCells');
 const config = require('../../config.json');
 
 
-
 module.exports = {
     moveToUp: function (matrix, gridSize, score) {
-        var endpoint;
+        var currCell;
         var moved = false;
-        for (var breadth = 0; breadth < gridSize; breadth++) {
+        for (var col = 0; col < gridSize; col++) {
 
-            var length = 0;
-            endpoint = {
-                l: length,
-                b: breadth
+            // Initial row number
+            var row = 0;
+
+            // Coordinates of Curr and Next Cell
+            currCell = {
+                row: row,
+                col: col
+            };
+            var nextCell = {
+                row: row + 1,
+                col: col
             };
 
-            var toMergePos = {
-                l: length + 1,
-                b: breadth
-            };
+            // Go to each row
+            while (row < gridSize) {
 
+                // Change row to next row
+                row++;
 
-            while (length < gridSize) {
-                length++;
-                var endpointVal = matrix[endpoint.l][endpoint.b];
-                var toMergeVal = matrix[toMergePos.l][toMergePos.b];
+                // Get curr and next curr val
+                var currCellVal = matrix[currCell.row][currCell.col];
+                var nextCellVal = matrix[nextCell.row][nextCell.col];
 
-                var isEndPointFull = isValueNonEmpty(endpointVal);
-                var isMergeValFull = isValueNonEmpty(toMergeVal);
+                // Check if both cell full
+                var isCurrCellFull = isValueNonEmpty(currCellVal);
+                var isNextCellFull = isValueNonEmpty(nextCellVal);
 
-                if (isEndPointFull && isMergeValFull) {
-                    if (endpointVal == toMergeVal) {
-                        mergeCells(endpoint, toMergePos, matrix, score);
+                // Merging and Shifting
+                if (isCurrCellFull && isNextCellFull) {
+                    if (currCellVal == nextCellVal) {
+                        mergeCells(currCell, nextCell, matrix, score);     // Merge equal Cells
                         moved = true;
                     } else {
-                        matrix[endpoint.l + 1][endpoint.b] = toMergeVal;
-                        if (endpoint.l + 1 != toMergePos.l) {
-                            matrix[toMergePos.l][toMergePos.b] = config.emptySymbol;
+                        matrix[currCell.row + 1][currCell.col] = nextCellVal;   // Shift Curr with Next
+                        if (currCell.row + 1 != nextCell.row) {
+                            matrix[nextCell.row][nextCell.col] = config.emptySymbol;
                         }
                     }
 
-                    endpoint = {
-                        l: endpoint.l + 1,
-                        b: breadth
+                    // Update Curr Cell
+                    currCell = {
+                        row: currCell.row + 1,
+                        col: col
                     };
                 } else {
-                    let res = shiftCells(endpoint, toMergePos, matrix);
+                    let res = shiftCells(currCell, nextCell, matrix);   // Shift Curr with next Cell
                     moved = moved ? moved : res;
                 }
 
-                if (length + 1 < gridSize) {
-                    toMergePos = {
-                        l: length + 1,
-                        b: breadth
+                // Update next cell if possible
+                if (row + 1 < gridSize) {
+                    nextCell = {
+                        row: row + 1,
+                        col: col
                     }
                 }
-
             }
         }
         return moved;

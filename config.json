@@ -3,5 +3,6 @@
     "winningScore": 200,
     "emptySymbol": 0,
     "winMsg": "You Won!",
-    "overMsg": "Game Over!"
+    "overMsg": "Game Over!",
+    "welcomeMsg": "Welcome to 2048 Game."
 }
