@@ -30,14 +30,21 @@ const WELCOME_MSG = 'Welcome to 2048 CMD Game!';
 */
 var grid = startGame(GRIDSIZE);
 var score = [0];
+console.log(WELCOME_MSG);
 displayGrid(grid, score);
 
 /**
  * Listent for Keypress Event.
 */
 process.stdin.on("keypress", function (ch, key) {
-  switch (key.name) {
+  if(!key && !ch) {
+    console.log('Please Use the Arrow Keys.')
+    return;
+  }
+  let keyName = key ? key.name : ch;
+  switch (keyName) {
     case "up":
+    case "3":
       let movedUp = moveToUp(grid, GRIDSIZE, score);
       if(movedUp) {
         var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
@@ -50,8 +57,8 @@ process.stdin.on("keypress", function (ch, key) {
       break;
 
     case "down":
+    case "4":
       let movedDown = moveToDown(grid, GRIDSIZE, score);
-      console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
       if(movedDown) {
         var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
         if(!haveEmptyCells) {
@@ -63,6 +70,7 @@ process.stdin.on("keypress", function (ch, key) {
       break;
 
     case "right":
+    case "2":
       let movedRight = moveToRight(grid, GRIDSIZE, score);
       if(movedRight) {
         var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
@@ -75,6 +83,7 @@ process.stdin.on("keypress", function (ch, key) {
       break;
 
     case "left":
+    case "1":
       let movedLeft = moveGridToLeft(grid, GRIDSIZE, score);
       if(movedLeft) {
         var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
@@ -87,6 +96,7 @@ process.stdin.on("keypress", function (ch, key) {
       break;
 
     default:
+      console.log('Please use valid keys.')
       break;
   }
 

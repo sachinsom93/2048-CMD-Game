@@ -1,6 +1,6 @@
 {
     "gridSize": 4,
-    "winningScore": 200,
+    "winningScore": 2048,
     "emptySymbol": 0,
     "winMsg": "You Won!",
     "overMsg": "Game Over!",
