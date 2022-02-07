@@ -15,64 +15,60 @@ module.exports = {
     moveToDown: function (grid, gridSize, score) {
         var currCell;
         var moved = false;
-        for (var row = 0; row < gridSize; row++) {
+        for (var col = 0; col < gridSize; col++) {
 
-            // Initial row number
+            // Initial Row Value
             var row = gridSize - 1;
 
-            // Coordinates of curr and next cells
+            // Curr and Next Cells
             currCell = {
                 row: row,
-                col: row
+                col: col
             };
             var nextCell = {
                 row: row - 1,
-                col: row
+                col: col
             };
 
-            // Check to each row's each col
-            while (row > 0) {
-                row--;
 
-                // Current and Next Cell values
+            // Go to each row
+            while (row > 0) {
+
+                // Get Curr and Next Cell values
+                row--;
                 var currCellVal = grid[currCell.row][currCell.col];
                 var nextCellVal = grid[nextCell.row][nextCell.col];
 
-                // Check if both cells are empty or not
+                // Check if both cells are full
                 var isCurrCellFull = isValueNonEmpty(currCellVal);
                 var isNextCellFull = isValueNonEmpty(nextCellVal);
 
-                // Merging and Shifting of Cells
+                // Merging and Shifting
                 if (isCurrCellFull && isNextCellFull) {
                     if (currCellVal == nextCellVal) {
-                        mergeCells(currCell, nextCell, grid, score);        // Merge Cells with Equal values
+                        mergeCells(currCell, nextCell, grid, score);
                         moved = true;
                     } else {
-                        grid[currCell.row - 1][currCell.col] = nextCellVal;     // Shift Curr to Next
+                        grid[currCell.row - 1][currCell.col] = nextCellVal;
                         if (currCell.row - 1 != nextCell.row) {
                             grid[nextCell.row][nextCell.col] = config.emptySymbol;
                         }
                     }
-
-                    // Update Curr Cell
                     currCell = {
                         row: currCell.row - 1,
-                        col: row
+                        col: col
                     };
                 } else {
-                    // Shift Curr to Next
                     let res = shiftCells(currCell, nextCell, grid);
                     moved = moved ? moved : res;
                 }
 
-                // Update Next Cell
                 nextCell = {
                     row: row - 1,
-                    col: row
+                    col: col
                 }
             }
         }
         return moved;
     }
 }
-

@@ -51,6 +51,7 @@ process.stdin.on("keypress", function (ch, key) {
 
     case "down":
       let movedDown = moveToDown(grid, GRIDSIZE, score);
+      console.log('%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%')
       if(movedDown) {
         var haveEmptyCells = fillRandomCell(grid, GRIDSIZE);
         if(!haveEmptyCells) {

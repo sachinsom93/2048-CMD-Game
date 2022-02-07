@@ -12,11 +12,11 @@ module.exports = {
 
         // Curr and next cell value
         var moved = false;
-        var currCell = grid[currCell.row][currCell.col];
+        var currCellVal = grid[currCell.row][currCell.col];
         var nextCellVal = grid[nextCell.row][nextCell.col];
 
         // Check if Curr Cell is Empty and Next is full
-        var isCurrCellEmpty = !isValueNonEmpty(currCell);
+        var isCurrCellEmpty = !isValueNonEmpty(currCellVal);
         var isNextCellFull = isValueNonEmpty(nextCellVal);
 
         // Update Cells if Curr is empty and next is full
