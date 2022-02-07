@@ -11,8 +11,9 @@ module.exports = {
         // Create Empty cell
         grid = createGrid(gridSize);
 
-        // Fill Position with Random Num
-        let haveEmptyCells = fillRandomCell(grid, gridSize);
+        // Fill two Position with 2 or 4
+        fillRandomCell(grid, gridSize);
+        fillRandomCell(grid, gridSize);
 
         return grid;
     }
